@@ -1810,6 +1810,10 @@ class PlotAxes(base.Axes):
         elif isinstance(obj, mcollections.Collection):  # e.g. QuadMesh, PolyCollection
             obj.set_linewidth(linewidth)
             obj.set_edgecolor("face")
+            from matplotlib import patheffects as pe
+            obj.set_path_effects([
+                pe.Stroke(linewidth=linewidth, linestyle="-", foreground="face")
+            ])
         elif isinstance(obj, mpatches.Patch):  # e.g. Rectangle
             obj.set_linewidth(linewidth)
             obj.set_edgecolor(obj.get_facecolor())
