@@ -576,7 +576,10 @@ class CartesianAxes(shared._SharedAxes, plot.PlotAxes):
             if ax1.get_autoscalex_on() and not ax2.get_autoscalex_on():
                 ax1.set_xlim(ax2.get_xlim())  # non-default limits
         # Copy non-default locators and formatters
-        self.sharex(sharex) # get_shared_x_axes now returns an immutable object
+        # self.sharex(sharex)
+        self._shared_axes["x"].join(self, sharex)
+
+        # self.get_shared_x_axes().joined(self, sharex)  # share limit/scale changes
         if sharex.xaxis.isDefault_majloc and not self.xaxis.isDefault_majloc:
             sharex.xaxis.set_major_locator(self.xaxis.get_major_locator())
         if sharex.xaxis.isDefault_minloc and not self.xaxis.isDefault_minloc:
@@ -598,7 +601,8 @@ class CartesianAxes(shared._SharedAxes, plot.PlotAxes):
                 ax1.set_yscale(ax2.get_yscale())
             if ax1.get_autoscaley_on() and not ax2.get_autoscaley_on():
                 ax1.set_ylim(ax2.get_ylim())
-        self.sharey(sharey) # get_shared_y_axes now returns an immutable object
+        # self.sharey(sharey) # get_shared_y_axes now returns an immutable object
+        self._shared_axes["y"].join(self, sharey)
         if sharey.yaxis.isDefault_majloc and not self.yaxis.isDefault_majloc:
             sharey.yaxis.set_major_locator(self.yaxis.get_major_locator())
         if sharey.yaxis.isDefault_minloc and not self.yaxis.isDefault_minloc:
