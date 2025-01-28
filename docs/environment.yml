@@ -12,38 +12,36 @@
 #   manually specify that: https://github.com/pallets/markupsafe/issues/284
 # * docutils >= 0.17 breaks bullet points. See the following thread
 #   for more info: https://github.com/readthedocs/sphinx_rtd_theme/issues/1115
-name: ultraplot-dev
+name: ultraplot-docs
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
-  - cartopy
+  - python >=3.9, <3.12
   - docutils
   - ipykernel
   - jinja2
   - jupytext
   - markupsafe
-  - matplotlib>=3.9.1
-  - numpy>=1.26.0,<2
+  - matplotlib>=3.9
+  - numpy>=1.26.0
   - pandas
   - pandoc
   - pint
   - pip
   - pyqt
   - pytest
-  - python
   - seaborn
-  - setuptools==72.1.0
+  - setuptools>=72.1.0
   - xarray
   - pip:
-      - ..
+      - cartopy
       - basemap
       - sphinx-autoapi
       - basemap-data-hires
-      # - git+https://github.com/ultraplot-dev/sphinx-automodapi@ultraplot-mods
       - sphinx-automodapi
       - nbsphinx
-      - sphinx>=7,<8
+      - sphinx>=7
       - sphinx-copybutton
-      - sphinx-rtd-theme==2.1.0rc2
+      - sphinx-rtd-theme>=2.1
       - git+https://github.com/ultraplot/UltraTheme.git
