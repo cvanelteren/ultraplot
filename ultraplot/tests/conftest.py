@@ -3,6 +3,10 @@ from pathlib import Path
 import warnings, logging
 
 
+def pytest_addoption(parser):
+    parser.addoption("--show", action="store_true", help="Show plots after test")
+
+
 @pytest.fixture(autouse=True)
 def _reset_numpy_seed():
     """
@@ -16,6 +20,13 @@ def _reset_numpy_seed():
 def close_figures_after_test():
     yield
     uplt.close("all")
+
+
+@pytest.fixture(autouse=True)
+def show_plots_on_exit(request):
+    yield
+    if request.config.getoption("--show"):
+        uplt.show(block=True)
 
 
 # Define command line option
